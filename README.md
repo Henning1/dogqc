@@ -34,6 +34,8 @@ DogQC employs mechanisms to address the effects of data-parallel lanes following
 
 `./dogqc/` contains the query compiler.
 
+`./sample/` samples for generated `.cu` files and profiling reports.
+
 ### Getting Started
 First ensure that your environment provides the soft- and hardware described in development environment. 
 Similar may work, but has not been tested.
@@ -57,6 +59,23 @@ To clear the database delete the folder `./bin/mmdb/`.
 To get additional information during query execution, the `CudaCompiler` object can be created with `debug=True`.
 Query plans can be visualized with the `RelationalAlgebra.showGraph(..)` method when `graphviz` for python is installed.
 The `clang` compiler works aswell and achieves shorter compilation times.
+
+### Profiler
+DogQC provides a profiler for divergence balancing [5]. The profiling tool allows users to freely place balancing operators into DogQC-generated query plans and to observe their effects. Sample outputs of the profiling tool are shown in `sample/profiling_report_divergent.pdf` and `sample/profiling_report_balanced.pdf`.
+
+To execute queries with the profiler you can go to the `bin` directory and try the following commands.
+```
+% Execute TPC-H Q10 and create profiling report
+%  - result: profiling_report0.pdf
+python3 ../query/profiler.py ~/tpch/sf1 10
+
+% profile lane activity after operator 9
+python3 ../query/profiler.py ~/tpch/sf1 10 [9] []
+
+% profile with divergence balancing and lane activity profile
+% after operator 9 (balancing comes first)
+python3 ../query/profiler.py ~/tpch/sf1 10 [9] [9]
+```
 
 ### Query Building
 Currently DogQC does not yet provide an SQL interface.
@@ -82,3 +101,6 @@ Pipelined Query Processing in Coprocessor Environments. SIGMOD Conference 2018.
 Make the most out of your SIMD investments: counter control flow divergence in compiled query pipelines. DaMoN 2018.
 
  [4] https://github.com/electrum/tpch-dbgen
+ 
+ [5] Henning Funke, Jens Teubner:
+ Like water and oil: with a proper emulsifier, query compilation and data parallelism will mix well. VLDB Conference 2020.
