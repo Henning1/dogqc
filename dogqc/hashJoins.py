@@ -34,7 +34,7 @@ class EquiJoinTranslator ( BinaryTranslator ):
 
     def consumeHashJoinBuild ( self, ctxt ):
         
-        commentOperator ("hash join build", ctxt.codegen)
+        commentOperator ("hash join build", self.algExpr.opId, ctxt.codegen)
 
         self.buildRelation = self.algExpr.leftChild.outRelation
         self.payload = Payload ( self.paylIdent, self.buildRelation, ctxt )
@@ -66,7 +66,7 @@ class EquiJoinTranslator ( BinaryTranslator ):
     # create variables and generate code for hash join probe
     def consumeHashJoinProbe ( self, ctxt ):
             
-        commentOperator ("hash join probe", ctxt.codegen)
+        commentOperator ("hash join probe", self.algExpr.opId, ctxt.codegen)
             
         # get probe attribute and add hash table to pipeline kernel
         self.htmem.addToKernel ( ctxt.codegen.currentKernel )
@@ -277,7 +277,7 @@ class EquiJoinTranslator ( BinaryTranslator ):
     
     
     def htProbeMultiMatchSingleBroadcastSemiAnti ( self, ctxt ):
-        commentOperator ("semi/anti multiprobe single broadcast", ctxt.codegen)
+        commentOperator ("semi/anti multiprobe single broadcast", self.algExpr.opId, ctxt.codegen)
         endVar = Variable.val ( CType.INT, "matchEnd" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         endVarBuf = Variable.val ( CType.INT, "matchEndBuf" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         offsetVar = Variable.val ( CType.INT, "matchOffset" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
@@ -352,7 +352,7 @@ class EquiJoinTranslator ( BinaryTranslator ):
 
     
     def htProbeMultiMatchMultiBroadcastSemiAnti ( self, ctxt ):
-        commentOperator ("semi/anti multiprobe multi broadcast", ctxt.codegen)
+        commentOperator ("semi/anti multiprobe multi broadcast", self.algExpr.opId, ctxt.codegen)
         endVar = Variable.val ( CType.INT, "matchEnd" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         endVarBuf = Variable.val ( CType.INT, "matchEndBuf" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         offsetVar = Variable.val ( CType.INT, "matchOffset" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
@@ -500,6 +500,8 @@ class EquiJoinTranslator ( BinaryTranslator ):
 
         ctxt.innerLoopCount += 1
         with UnrolledForLoop ( unrollDepth, ctxt.codegen): 
+
+            # ctxt.codegen.laneActivityProfile ( ctxt )
             
             emit ( assign ( probeActive, ctxt.vars.activeVar ), ctxt.codegen )
 
@@ -533,7 +535,7 @@ class EquiJoinTranslator ( BinaryTranslator ):
 
 
     def htProbeMultiMatchSingleBroadcast ( self, ctxt ):
-        commentOperator ("multiprobe single broadcast", ctxt.codegen)
+        commentOperator ("multiprobe single broadcast", self.algExpr.opId, ctxt.codegen)
         endVar = Variable.val ( CType.INT, "matchEnd" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         endVarBuf = Variable.val ( CType.INT, "matchEndBuf" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         offsetVar = Variable.val ( CType.INT, "matchOffset" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
@@ -595,7 +597,7 @@ class EquiJoinTranslator ( BinaryTranslator ):
 
 
     def htProbeMultiMatchMultiBroadcast ( self, ctxt ):
-        commentOperator ("multiprobe multi broadcast", ctxt.codegen)
+        commentOperator ("multiprobe multi broadcast", self.algExpr.opId, ctxt.codegen)
         endVar = Variable.val ( CType.INT, "matchEnd" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         endVarBuf = Variable.val ( CType.INT, "matchEndBuf" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
         offsetVar = Variable.val ( CType.INT, "matchOffset" + str ( self.algExpr.opId ), ctxt.codegen, intConst(0) )
@@ -664,6 +666,8 @@ class EquiJoinTranslator ( BinaryTranslator ):
             emit ( assign ( probeActive, smaller ( offsetVar, endVar ) ), ctxt.codegen )
             ctxt.innerLoopCount += 1
             with WhileLoop ( anyIntr ( qlib.Const.ALL_LANES, probeActive ), ctxt.codegen ):
+                emit ( assign ( ctxt.vars.activeVar, probeActive ), ctxt.codegen )
+                #ctxt.codegen.laneActivityProfile ( ctxt )
                 emit ( assign ( ctxt.vars.activeVar, intConst(0) ), ctxt.codegen )
                 payl = Variable.val ( self.htmem.payload.dataType, "payl", ctxt.codegen ) 
                 with IfClause ( probeActive, ctxt.codegen ):

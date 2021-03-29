@@ -101,7 +101,7 @@ class CodeGenerator ( object ):
         self.gpumem.mapForWrite ( counter ) 
         self.gpumem.initVar ( counter, "0u" ) 
         self.currentKernel.addVar ( counter )
-        emit ( printf ( "\\n"+text+": %i\\n", [ counter ]), self.finish )  
+        emit ( printf ( text+"%i\\n", [ counter ]), self.finish )  
         return counter
 
     def prefixlanes( self ):
@@ -127,31 +127,34 @@ class CodeGenerator ( object ):
         for k in self.kernels: 
             code.add(k.getKernelCode())
         code.add( "int main() {" )
-        code.addTimedFragment ( self.read, "import" )
-        code.addTimedFragment ( self.declare, "declare" )
+        code.addUntimedFragment ( self.read, "import" )
+        code.addUntimedFragment ( self.declare, "declare" )
         if self.gpumem.cudaMalloc.hasCode:
             wakeup = Code()
             comment ( "wake up gpu", wakeup ) 
-            code.addCudaFragment ( wakeup, "wake up gpu" )
-        code.addCudaFragment ( self.gpumem.cudaMalloc, "cuda malloc" )
+            code.addUntimedCudaFragment ( wakeup, "wake up gpu" )
+        code.addUntimedCudaFragment ( self.gpumem.cudaMalloc, "cuda malloc" )
         if useCuda:
             printMemoryFootprint ( code )
-        code.addCudaFragment ( self.gpumem.cudaMallocHT, "cuda mallocHT" )
+        code.addUntimedCudaFragment ( self.gpumem.cudaMallocHT, "cuda mallocHT" )
         if useCuda:
             printMemoryFootprint ( code )
-        code.addCudaFragment ( self.gpumem.cudaMemcpyIn, "cuda memcpy in" )
+        code.addUntimedCudaFragment ( self.gpumem.cudaMemcpyIn, "cuda memcpy in" )
         tsKernels = Timestamp ( "totalKernelTime", code )
         for call in self.kernelCalls: 
-            msg = call.kernelName + " " + str(call.gridSize) + " " + str(call.blockSize)
-            code.addCudaFragment ( call.get(), msg )
+            code.addCudaFragment ( call.get(), call.kernelName, call.getAnnotations() )
         tsKernels.stop()
-        code.addCudaFragment ( self.gpumem.cudaMemcpyOut, "cuda memcpy out" )
-        code.addCudaFragment ( self.gpumem.cudaFree, "cuda free" )
+        code.addUntimedCudaFragment ( self.gpumem.cudaMemcpyOut, "cuda memcpy out" )
+        code.addUntimedCudaFragment ( self.gpumem.cudaFree, "cuda free" )
         code.addTimedFragment ( self.finish, "finish" )
         if useCuda:
             code.timestamps.append ( tsKernels )
+
+        emit ( printf ( "<timing>\\n" ), code )  
         for ts in code.timestamps: 
             ts.printTime() 
+        emit ( printf ( "</timing>\\n" ), code )  
+
         code.add("}")
         return code.content
 
@@ -209,6 +212,8 @@ class CodeGenerator ( object ):
         cmd = "./" + self.filename
         output = subprocess.check_output(cmd, shell=True).decode('utf-8')
         print(output)
+        with open(self.filename + ".log", "w") as log_file:
+                print(output, file=log_file)
         sys.stdout.flush()
         return (output)
 

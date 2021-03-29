@@ -481,8 +481,8 @@ def getCudaMemset ( dualVariable, num ):
 def ERROR ( msg, code ):
     return code.add("ERROR(\"" + str(msg) + "\")")
 
-def commentOperator ( comment, code ):
-    return code.add("// -------- " + comment + " --------" )
+def commentOperator ( comment, opId, code ):
+    return code.add("// -------- " + comment + " (opId: " + str(opId) + ") --------" )
                 
 def stringEquals ( a, b ):
     return call ( "stringEquals", [ a, b ] )

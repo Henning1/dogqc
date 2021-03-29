@@ -107,7 +107,6 @@ class RelationalAlgebra ( object ):
         self.antiJoinNodes.append ( node )
         return node
  
-    
     def outerjoin ( self, equalityConditions, otherConditions, leftChild, rightChild ):
         return EquiJoin ( self.ctxt, Join.OUTER, equalityConditions, otherConditions, leftChild, rightChild )
 
@@ -122,6 +121,9 @@ class RelationalAlgebra ( object ):
         graph.graph_attr['rankdir'] = 'BT'
         for node in plan:
             node.toDOT ( graph )
+        file = open("query.dot","w") 
+        file.write ( graph.source )
+        print ( graph )
         graph.view()
     
     def resolveAlgebraPlan ( self, plan, cfg ):
@@ -223,8 +225,9 @@ class AlgExpr ( object ):
     def edgeDOTstr ( self ):
         if len ( self.outRelation ) == 0:
             return ""
-        labelList = list ( map ( lambda x: x.name + " (" + str(x.id) + ")", self.outRelation.values() ) )
-        labelList.append ( """<FONT POINT-SIZE="7"><b>""" + intToHuman ( self.tupleNum ) + "</b></FONT>" )
+        labelList = []
+        #labelList = list ( map ( lambda x: x.name + " (" + str(x.id) + ")", self.outRelation.values() ) )
+        labelList.append ( """<FONT POINT-SIZE="10"><b>""" + intToHuman ( self.tupleNum ) + "</b></FONT>" )
         res = formatDOTStr ( None, labelList )
         return res
     

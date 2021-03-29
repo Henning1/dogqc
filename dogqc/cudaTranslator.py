@@ -10,6 +10,7 @@ from dogqc.relationalAlgebra import Join
 from dogqc.util import listWrap
 from dogqc.relationalAlgebra import MaterializationType
 from dogqc.cudaDivergenceBuffer import LaneRefill
+from dogqc.cudaLaneActivityProfile import LaneActivityProfiler
 from dogqc.translatorBase import LiteralTranslator, UnaryTranslator, BinaryTranslator
 from dogqc.hashTableUtil import Payload, HashTableMemory, Hash
 from dogqc.hashJoins import EquiJoinTranslator
@@ -36,6 +37,7 @@ class CudaCompiler ( object ):
         self.lang = dogqc.cudalang
         self.algebraContext = algebraContext
         self.bufferPositions = []
+        self.profilerPositions = []
         # innerLoopCount:
         # increment in consume implementations, which leave a loop open when calling next consume (e.g. multimatch join loop)
         # decrement when loop is closed
@@ -56,6 +58,9 @@ class CudaCompiler ( object ):
     
     def setBuffers ( self, positions ):
         self.bufferPositions = positions
+    
+    def setProfilers ( self, positions ):
+        self.profilerPositions = positions
 
     def translate ( self, algebraExpr, child1=None, child2=None ): 
         op = None
@@ -75,15 +80,26 @@ class CudaCompiler ( object ):
             op = ProjectionTranslator ( algebraExpr, child1 )
         if isinstance ( algebraExpr, dogqc.relationalAlgebra.Materialize ):
             op = MaterializeTranslator ( algebraExpr, child1 )
-        # add a buffer if specified for the current position
-        op = self.addBuffers ( algebraExpr, op )
+
+        # add additional operators if specified for the current position
+        if algebraExpr.opId in self.bufferPositions:
+            op = LaneRefill ( algebraExpr, op )
+        if algebraExpr.opId in self.profilerPositions:
+            op = LaneActivityProfiler ( algebraExpr, op )
         return op
 
-    def addBuffers ( self, algExpr, op ):
-        if algExpr.opId in self.bufferPositions:
-            return LaneRefill ( algExpr, op )
-        else:
-            return op
+    # visualize plan
+    def showGraph ( self, plan ):
+        from graphviz import Digraph
+        plan = listWrap ( plan )
+        graph = Digraph ()
+        graph.graph_attr['rankdir'] = 'BT'
+        for node in plan:
+            node.toDOT ( graph )
+        file = open("query.dot","w") 
+        file.write ( graph.source )
+        graph.render("qplan")
+         
         
 
 class AttributeLocation ( Enum ):
@@ -274,7 +290,6 @@ class ScanLoop ( object ):
            vars.stepVar.declareAssign ( mul ( blockDim_x(), gridDim_x() ), codegen )
            vars.flushVar = Variable.val ( CType.UINT, "flushPipeline", codegen, intConst(0) )
            vars.activeVar = Variable.val ( CType.INT, "active", codegen, intConst(0) )
-           commentOperator ( "scan", ctxt.codegen )
            self.kernelLoop = WhileLoop ( notLogic ( vars.flushVar ), codegen )
            emit ( assign ( vars.scanTid, vars.loopVar ), codegen )
            emit ( assign ( vars.activeVar, smaller ( vars.loopVar, table["size"] ) ), codegen ) 
@@ -322,6 +337,7 @@ class ScanTranslator ( LiteralTranslator ):
 
     def produce ( self, ctxt ):
         algExpr = self.algExpr       
+        #commentOperator ( "scan", ctxt.codegen )
 
         ctxt.vars.scanTid = Variable.tidLit ( algExpr.table, algExpr.scanTableId )
     
@@ -340,7 +356,7 @@ class SelectionTranslator ( UnaryTranslator ):
         self.child.produce ( ctxt ) 
 
     def consume ( self, ctxt ):
-        commentOperator ( "selection", ctxt.codegen)
+        commentOperator ( "selection", self.algExpr.opId, ctxt.codegen)
 
         algExpr = self.algExpr
         with IfClause ( ctxt.vars.activeVar, ctxt.codegen ):
@@ -363,12 +379,12 @@ class NestedJoinTranslator ( BinaryTranslator ):
     def consume ( self, ctxt ):
         self.consumeCall += 1
         if ( self.consumeCall % 2 == 1):
-            commentOperator ("nested join: materialize inner ", ctxt.codegen)
+            commentOperator ("nested join: materialize inner ", self.algExpr.opId, ctxt.codegen)
             self.tableName = "inner" + str ( self.algExpr.opId )
             self.denseWrite = DenseWrite ( self.algExpr.leftChild.outRelation, self.tableName, MaterializationType.TEMPTABLE, self.algExpr.leftChild.tupleNum, ctxt )
             
         elif ( self.consumeCall % 2 == 0):
-            commentOperator ("nested join: loop inner ", ctxt.codegen)
+            commentOperator ("nested join: loop inner ", self.algExpr.opId, ctxt.codegen)
             ctxt.codegen.currentKernel.addVar ( self.denseWrite.numOut )
             self.innerTid = Variable.tidLit ( self.denseWrite.getTable(), 0 )
    
@@ -392,7 +408,7 @@ class MapTranslator ( UnaryTranslator ):
         self.child.produce( ctxt )
 
     def consume ( self, ctxt ):
-        commentOperator ("map", ctxt.codegen)
+        commentOperator ("map", self.algExpr.opId, ctxt.codegen)
 
         # for map strings we set a reference to the char heap for the new attribute
         if len ( self.algExpr.mapStringAttributes ) == 1:
@@ -413,7 +429,9 @@ class AggregationTranslator ( UnaryTranslator ):
         self.consumeHashTable ( ctxt )
 
     def consume ( self, ctxt ):
-        commentOperator ("aggregation", ctxt.codegen)
+        commentOperator ("aggregation", self.algExpr.opId, ctxt.codegen)
+        
+        #ctxt.codegen.laneActivityProfile ( ctxt )
 
         # create aggregation hash table with grouping payload 
         if self.algExpr.doGroup:
@@ -485,7 +503,7 @@ class AggregationTranslator ( UnaryTranslator ):
         self.algExpr.scanTableId = 1
                 
         with ScanLoop ( ctxt.vars.scanTid, ScanType.KERNEL, False, htmem.getTable ( self.algExpr.opId ), dict(), self.algExpr, ctxt ):
-            commentOperator ("scan aggregation ht", ctxt.codegen)
+            commentOperator ("scan aggregation ht", self.algExpr.opId, ctxt.codegen)
             htmem.addToKernel ( ctxt.codegen.currentKernel )
             if self.algExpr.doGroup:
                 with IfClause ( ctxt.vars.activeVar, ctxt.codegen ):
@@ -513,7 +531,7 @@ class ProjectionTranslator ( UnaryTranslator ):
         self.child.produce ( ctxt )
 
     def consume( self, ctxt ):
-        commentOperator ("projection (no code)", ctxt.codegen)
+        commentOperator ("projection (no code)", self.algExpr.opId, ctxt.codegen)
         self.parent.consume ( ctxt )
 
 
@@ -571,7 +589,7 @@ class MaterializeTranslator ( UnaryTranslator ):
         codegen = ctxt.codegen
         matType = self.algExpr.matType
  
-        commentOperator ("materialize", ctxt.codegen)
+        commentOperator ("materialize", self.algExpr.opId, ctxt.codegen)
 
         tableName = "result"
         if matType == MaterializationType.TEMPTABLE:

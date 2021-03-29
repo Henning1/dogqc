@@ -38,6 +38,13 @@ class KernelCall ( object ):
         else:
             return KernelCall.generic ( self.kernelName, self.parameters, self.gridSize, self.blockSize )
 
+    def getAnnotations ( self ):
+        if self.kernel != None and len(self.kernel.annotations) > 0:
+            return " ".join(self.kernel.annotations)
+        else:
+            return ""
+
+
     def generic ( kernelName, parameters, gridSize=1024, blockSize=128, templateParams="" ):
         # kernel invocation parameters
         code = Code()
@@ -77,6 +84,7 @@ class Kernel ( object ):
         self.outputAttributes = []
         self.variables = []
         self.kernelName = name
+        self.annotations = []
 
     def add ( self, code ):
         self.body.add( code )
@@ -94,7 +102,6 @@ class Kernel ( object ):
         for v in self.variables:
             params.append( v.getGPU() )
         return params
-
 
     def getKernelCode( self ):
         kernel = Code()
@@ -126,5 +133,8 @@ class Kernel ( object ):
         # close kernel frame
         kernel.add("}") 
         return kernel.content
+
+    def annotate ( self, msg ):
+        self.annotations.append(msg)
 
 
