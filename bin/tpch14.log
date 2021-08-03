@@ -1,0 +1,14 @@
+
+Result: 1 tuples
+promo_revenue:           16.38  
+
+<timing>
+                  krnl_lineitem1:    0.4 ms
+                     scanMultiHT:    0.0 ms
+              krnl_lineitem1_ins:    0.7 ms
+                      krnl_part3:    0.2 ms
+               krnl_aggregation7:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    1.4 ms
+</timing>
+

@@ -1,0 +1,16 @@
+
+Result: 5 tuples
+o_orderpriority:   3-MEDIUM  order_count:    10410  
+o_orderpriority:     2-HIGH  order_count:    10476  
+o_orderpriority: 4-NOT SPEC  order_count:    10556  
+o_orderpriority:   1-URGENT  order_count:    10594  
+o_orderpriority:      5-LOW  order_count:    10487  
+
+<timing>
+                  krnl_lineitem1:   21.8 ms
+                    krnl_orders3:    1.4 ms
+               krnl_aggregation6:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:   23.2 ms
+</timing>
+

@@ -1,0 +1,27 @@
+
+Result: 1048 tuples
+ps_partkey:    90110  sum_suppval2:      9420423.00  
+ps_partkey:    72522  sum_suppval2:      8601480.00  
+ps_partkey:   186481  sum_suppval2:      9058609.00  
+ps_partkey:   116775  sum_suppval2:     10097750.00  
+ps_partkey:    45924  sum_suppval2:      7925048.00  
+ps_partkey:    72865  sum_suppval2:      9679043.00  
+ps_partkey:   111221  sum_suppval2:      8367526.00  
+ps_partkey:   111295  sum_suppval2:     10893676.00  
+ps_partkey:    41527  sum_suppval2:      8508222.00  
+ps_partkey:   113431  sum_suppval2:      8646348.00  
+[...]
+
+<timing>
+                    krnl_nation1:    0.0 ms
+                  krnl_supplier3:    0.0 ms
+                  krnl_partsupp5:    0.1 ms
+               krnl_aggregation8:    0.0 ms
+                  krnl_nation210:    0.0 ms
+                krnl_supplier212:    0.0 ms
+                krnl_partsupp214:    0.2 ms
+              krnl_aggregation17:    0.2 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    0.6 ms
+</timing>
+

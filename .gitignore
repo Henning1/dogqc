@@ -1,0 +1,5 @@
+.idea/
+bin/mmdb/*
+dogqc/__pycache__/
+query/schema/__pycache__/
+

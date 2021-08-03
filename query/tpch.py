@@ -29,7 +29,7 @@ def main():
     acc = io.dbAccess ( schema.tpch.tpchSchema, "mmdb", sys.argv[1] )
     # execute all tpch 
     if sys.argv[2] == "all":
-        for i in range(1,23):
+        for i in range(1,23 + 1):
             print ( "-----------------------Executing TPCH-H query " + str(i) + "-----------------------" )
             execTpch ( acc, i )
     # execute one tpch 

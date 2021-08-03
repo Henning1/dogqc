@@ -1,0 +1,15 @@
+
+Result: 2 tuples
+l_shipmode:       SHIP  high_line_count:         6200.00  low_line_count:         9262.00  
+l_shipmode:       MAIL  high_line_count:         6202.00  low_line_count:         9324.00  
+
+<timing>
+                  krnl_lineitem1:    1.2 ms
+                     scanMultiHT:    0.1 ms
+              krnl_lineitem1_ins:    1.2 ms
+                    krnl_orders3:    1.2 ms
+               krnl_aggregation7:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    3.7 ms
+</timing>
+

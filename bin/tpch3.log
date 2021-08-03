@@ -1,0 +1,23 @@
+
+Result: 11620 tuples
+l_orderkey:  4035715  o_orderdate:   19950203  o_shippriority:        0  sum_rev:        70150.53  
+l_orderkey:  4047012  o_orderdate:   19950128  o_shippriority:        0  sum_rev:        20810.59  
+l_orderkey:   737410  o_orderdate:   19941222  o_shippriority:        0  sum_rev:        35400.06  
+l_orderkey:  2784737  o_orderdate:   19950201  o_shippriority:        0  sum_rev:        60499.32  
+l_orderkey:   512422  o_orderdate:   19941226  o_shippriority:        0  sum_rev:        81143.95  
+l_orderkey:   820737  o_orderdate:   19941128  o_shippriority:        0  sum_rev:        52846.68  
+l_orderkey:  4254019  o_orderdate:   19941209  o_shippriority:        0  sum_rev:        87454.41  
+l_orderkey:  3581893  o_orderdate:   19950221  o_shippriority:        0  sum_rev:        78946.22  
+l_orderkey:   333732  o_orderdate:   19950225  o_shippriority:        0  sum_rev:       168588.09  
+l_orderkey:  2086535  o_orderdate:   19950116  o_shippriority:        0  sum_rev:        45880.95  
+[...]
+
+<timing>
+                  krnl_customer1:    0.1 ms
+                    krnl_orders3:    0.8 ms
+                  krnl_lineitem6:    2.2 ms
+              krnl_aggregation10:    0.1 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    3.1 ms
+</timing>
+

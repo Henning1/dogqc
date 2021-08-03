@@ -1,0 +1,11 @@
+
+Result: 1 tuples
+revenue:     40716648.00  
+
+<timing>
+                  krnl_lineitem1:    0.7 ms
+               krnl_aggregation4:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    0.7 ms
+</timing>
+

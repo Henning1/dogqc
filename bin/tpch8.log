@@ -1,0 +1,27 @@
+
+Result: 2 tuples
+o_year:       1995  mkt_share:            0.03  salesnum:     1301  
+o_year:       1996  mkt_share:            0.04  salesnum:     1302  
+
+<timing>
+                    krnl_nation1:    0.0 ms
+                     scanMultiHT:    0.0 ms
+                krnl_nation1_ins:    0.0 ms
+                    krnl_region2:    0.0 ms
+                   krnl_nation24:    0.0 ms
+                      krnl_part6:    0.0 ms
+                  krnl_lineitem8:    3.9 ms
+                     scanMultiHT:    0.0 ms
+              krnl_lineitem8_ins:    4.6 ms
+                   krnl_orders10:    0.3 ms
+                     scanMultiHT:    0.0 ms
+               krnl_orders10_ins:    0.3 ms
+                 krnl_customer13:    0.1 ms
+                     scanMultiHT:    0.0 ms
+             krnl_customer13_ins:    0.1 ms
+                 krnl_supplier16:    0.0 ms
+              krnl_aggregation22:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    9.5 ms
+</timing>
+

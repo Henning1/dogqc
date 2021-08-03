@@ -1,0 +1,32 @@
+
+Result: 411 tuples
+s_name: Supplier#0  numwait:       12  
+s_name: Supplier#0  numwait:        8  
+s_name: Supplier#0  numwait:       13  
+s_name: Supplier#0  numwait:        9  
+s_name: Supplier#0  numwait:       10  
+s_name: Supplier#0  numwait:       10  
+s_name: Supplier#0  numwait:       14  
+s_name: Supplier#0  numwait:       11  
+s_name: Supplier#0  numwait:        8  
+s_name: Supplier#0  numwait:       13  
+[...]
+
+<timing>
+                  krnl_lineitem1:    2.7 ms
+                     scanMultiHT:    0.3 ms
+              krnl_lineitem1_ins:    4.9 ms
+                 krnl_lineitem22:    2.8 ms
+                     scanMultiHT:    0.3 ms
+             krnl_lineitem22_ins:    4.6 ms
+                    krnl_nation4:    0.0 ms
+                  krnl_supplier6:    0.0 ms
+                 krnl_lineitem38:    0.9 ms
+                     scanMultiHT:    0.0 ms
+             krnl_lineitem38_ins:    1.1 ms
+                   krnl_orders11:    0.9 ms
+              krnl_aggregation16:    0.1 ms
+                          finish:    0.0 ms
+                 totalKernelTime:   18.8 ms
+</timing>
+

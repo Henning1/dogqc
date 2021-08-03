@@ -1,0 +1,24 @@
+
+Result: 18314 tuples
+p_brand:   Brand#44  p_type: SMALL ANOD  p_size:       49  supp_count:        4  
+p_brand:   Brand#23  p_type: MEDIUM BRU  p_size:        3  supp_count:       16  
+p_brand:   Brand#21  p_type: SMALL PLAT  p_size:        3  supp_count:        8  
+p_brand:   Brand#25  p_type: SMALL ANOD  p_size:       49  supp_count:        4  
+p_brand:   Brand#52  p_type: SMALL ANOD  p_size:       49  supp_count:        4  
+p_brand:   Brand#55  p_type: PROMO BRUS  p_size:       19  supp_count:        4  
+p_brand:   Brand#21  p_type: ECONOMY PL  p_size:        9  supp_count:        4  
+p_brand:   Brand#51  p_type: LARGE BURN  p_size:        3  supp_count:        8  
+p_brand:   Brand#15  p_type: LARGE BURN  p_size:        3  supp_count:       12  
+p_brand:   Brand#52  p_type: ECONOMY PL  p_size:       45  supp_count:        8  
+[...]
+
+<timing>
+                  krnl_supplier1:    0.0 ms
+                      krnl_part3:    0.1 ms
+                  krnl_partsupp5:    1.0 ms
+               krnl_aggregation8:    1.4 ms
+               krnl_aggregation9:    0.3 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    2.9 ms
+</timing>
+

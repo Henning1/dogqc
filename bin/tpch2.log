@@ -1,0 +1,36 @@
+
+Result: 460 tuples
+s_acctbal:         9936.22  s_name: Supplier#0  n_name: UNITED KIN  p_partkey:      249  p_mfgr: Manufactur  s_address: B3rqp0xbSE  s_phone: 33-320-228  s_comment: etect abou  
+s_acctbal:         7669.38  s_name: Supplier#0  n_name:     FRANCE  p_partkey:     1015  p_mfgr: Manufactur  s_address: OmiSL2cwQ6  s_phone: 16-757-121  s_comment: ffily even  
+s_acctbal:         6332.07  s_name: Supplier#0  n_name:     FRANCE  p_partkey:     2037  p_mfgr: Manufactur  s_address: Z5UML Yd8Z  s_phone: 16-978-492  s_comment: usual asym  
+s_acctbal:         5647.88  s_name: Supplier#0  n_name:    GERMANY  p_partkey:     1634  p_mfgr: Manufactur  s_address: dbHS8xeJMo  s_phone: 17-244-262  s_comment: lithely re  
+s_acctbal:         2393.52  s_name: Supplier#0  n_name:    ROMANIA  p_partkey:    31708  p_mfgr: Manufactur  s_address: SX47Fkv7AD  s_phone: 29-811-331  s_comment: nic packag  
+s_acctbal:         2754.66  s_name: Supplier#0  n_name:     RUSSIA  p_partkey:    30974  p_mfgr: Manufactur  s_address: mRuc7TmfUu  s_phone: 32-511-233  s_comment: ironic acc  
+s_acctbal:         5613.57  s_name: Supplier#0  n_name:     FRANCE  p_partkey:    32186  p_mfgr: Manufactur  s_address: LOysL3v1Un  s_phone: 16-365-781  s_comment: y regular   
+s_acctbal:         2152.17  s_name: Supplier#0  n_name:     RUSSIA  p_partkey:    29791  p_mfgr: Manufactur  s_address: dcAWrWvBzW  s_phone: 32-342-857  s_comment: packages h  
+s_acctbal:          519.24  s_name: Supplier#0  n_name:    GERMANY  p_partkey:    31837  p_mfgr: Manufactur  s_address: I5Zl4KJ7 A  s_phone: 17-123-209  s_comment: quests boo  
+s_acctbal:         6183.73  s_name: Supplier#0  n_name:     FRANCE  p_partkey:    32059  p_mfgr: Manufactur  s_address: a rdeYnN1E  s_phone: 16-880-494  s_comment: mold furio  
+[...]
+
+<timing>
+                    krnl_region1:    0.0 ms
+                    krnl_nation3:    0.0 ms
+                     scanMultiHT:    0.0 ms
+                krnl_nation3_ins:    0.0 ms
+                  krnl_supplier5:    0.0 ms
+                   krnl_region27:    0.0 ms
+                   krnl_nation29:    0.0 ms
+                krnl_supplier211:    0.0 ms
+                     krnl_part13:    0.1 ms
+                 krnl_partsupp15:    0.2 ms
+              krnl_aggregation18:    0.2 ms
+                     scanMultiHT:    0.2 ms
+          krnl_aggregation18_ins:    0.2 ms
+                    krnl_part219:    0.1 ms
+                     scanMultiHT:    0.2 ms
+                krnl_part219_ins:    0.1 ms
+                krnl_partsupp222:    0.2 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    1.5 ms
+</timing>
+

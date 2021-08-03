@@ -1,0 +1,25 @@
+
+Result: 57 tuples
+c_name: Customer#0  c_custkey:    82441  o_orderkey:   857959  o_orderdate:   19940207  o_totalprice:       382579.72  sum_qty:          305.00  
+c_name: Customer#0  c_custkey:   114586  o_orderkey:   551136  o_orderdate:   19930519  o_totalprice:       469605.59  sum_qty:          308.00  
+c_name: Customer#0  c_custkey:   147197  o_orderkey:  1263015  o_orderdate:   19970202  o_totalprice:       467149.66  sum_qty:          320.00  
+c_name: Customer#0  c_custkey:    54602  o_orderkey:  5832321  o_orderdate:   19970209  o_totalprice:       471220.09  sum_qty:          307.00  
+c_name: Customer#0  c_custkey:   146608  o_orderkey:  3342468  o_orderdate:   19940612  o_totalprice:       499794.59  sum_qty:          303.00  
+c_name: Customer#0  c_custkey:   137446  o_orderkey:  5489475  o_orderdate:   19970523  o_totalprice:       487763.25  sum_qty:          311.00  
+c_name: Customer#0  c_custkey:   129379  o_orderkey:  4720454  o_orderdate:   19970607  o_totalprice:       448665.78  sum_qty:          303.00  
+c_name: Customer#0  c_custkey:   120098  o_orderkey:  1971680  o_orderdate:   19950614  o_totalprice:       453451.22  sum_qty:          308.00  
+c_name: Customer#0  c_custkey:   149842  o_orderkey:  5156581  o_orderdate:   19940530  o_totalprice:       411329.38  sum_qty:          302.00  
+c_name: Customer#0  c_custkey:    46435  o_orderkey:  4745607  o_orderdate:   19970703  o_totalprice:       508048.00  sum_qty:          309.00  
+[...]
+
+<timing>
+                  krnl_customer1:    0.5 ms
+                  krnl_lineitem2:    7.2 ms
+               krnl_aggregation3:    7.2 ms
+                    krnl_orders5:    1.4 ms
+                 krnl_lineitem28:    1.5 ms
+              krnl_aggregation10:    0.9 ms
+                          finish:    0.0 ms
+                 totalKernelTime:   18.7 ms
+</timing>
+

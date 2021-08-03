@@ -1,0 +1,24 @@
+
+Result: 99995 tuples
+c_custkey:    44450  c_count:       15  
+c_custkey:        4  c_count:       20  
+c_custkey:    78122  c_count:       12  
+c_custkey:   141886  c_count:       15  
+c_custkey:   104891  c_count:        4  
+c_custkey:    74933  c_count:        8  
+c_custkey:   135995  c_count:       13  
+c_custkey:   104897  c_count:        9  
+c_custkey:    22502  c_count:       14  
+c_custkey:    62903  c_count:       10  
+[...]
+
+<timing>
+                    krnl_orders1:    3.8 ms
+                     scanMultiHT:    0.3 ms
+                krnl_orders1_ins:    5.7 ms
+                  krnl_customer3:    0.8 ms
+               krnl_aggregation5:    0.5 ms
+                          finish:    0.0 ms
+                 totalKernelTime:   11.2 ms
+</timing>
+

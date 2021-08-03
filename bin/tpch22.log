@@ -1,0 +1,20 @@
+
+Result: 7 tuples
+cntrycode:         30  numcust:      909  totacctbal:      6808441.00  
+cntrycode:         29  numcust:      948  totacctbal:      7158861.00  
+cntrycode:         23  numcust:      893  totacctbal:      6706456.50  
+cntrycode:         17  numcust:      861  totacctbal:      6460573.00  
+cntrycode:         18  numcust:      964  totacctbal:      7236693.00  
+cntrycode:         31  numcust:      922  totacctbal:      6806666.50  
+cntrycode:         13  numcust:      888  totacctbal:      6737717.00  
+
+<timing>
+                    krnl_orders1:    4.2 ms
+                  krnl_customer2:    0.1 ms
+               krnl_aggregation4:    0.0 ms
+                 krnl_customer25:    0.1 ms
+              krnl_aggregation10:    0.6 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    4.9 ms
+</timing>
+

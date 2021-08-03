@@ -1,0 +1,29 @@
+
+Result: 186 tuples
+s_name: Supplier#0  s_address: 9xO4nyJ2QJ  
+s_name: Supplier#0  s_address: EDdfNt7E5U  
+s_name: Supplier#0  s_address: Rj,x6IgLT7  
+s_name: Supplier#0  s_address: SgVgP90vP4  
+s_name: Supplier#0  s_address: hQCAz59k,H  
+s_name: Supplier#0  s_address: ,phpt6AWEn  
+s_name: Supplier#0  s_address: 42Z1uLye9n  
+s_name: Supplier#0  s_address: p pVXCnxgc  
+s_name: Supplier#0  s_address: umEYZSq9RJ  
+s_name: Supplier#0  s_address: Ub6AAfHpWL  
+[...]
+
+<timing>
+                      krnl_part1:    0.1 ms
+                  krnl_partsupp3:    0.1 ms
+                  krnl_lineitem5:    4.3 ms
+               krnl_aggregation7:    0.6 ms
+                     scanMultiHT:    0.0 ms
+           krnl_aggregation7_ins:    0.6 ms
+                   krnl_nation10:    0.0 ms
+                     scanMultiHT:    0.0 ms
+               krnl_nation10_ins:    0.0 ms
+                 krnl_supplier12:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    5.8 ms
+</timing>
+

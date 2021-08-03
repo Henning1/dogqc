@@ -1,0 +1,12 @@
+digraph {
+	graph [rankdir=BT]
+	1 [label=<Scan (1)<FONT POINT-SIZE="10"><br/> lineitem (1)</FONT>>]
+	2 [label=<Selection (2)>]
+	1 -> 2 [label=<<FONT POINT-SIZE="10"><br/> <FONT POINT-SIZE="10"><b>6.0&#8239;M</b></FONT></FONT>>]
+	3 [label=<Map (3)>]
+	2 -> 3 [label=<<FONT POINT-SIZE="10"><br/> <FONT POINT-SIZE="10"><b>6.0&#8239;M</b></FONT></FONT>>]
+	4 [label=<Aggregation (4)>]
+	3 -> 4 [label=<<FONT POINT-SIZE="10"><br/> <FONT POINT-SIZE="10"><b>6.0&#8239;M</b></FONT></FONT>>]
+	5 [label=<Result (5)>]
+	4 -> 5 [label=<<FONT POINT-SIZE="10"><br/> <FONT POINT-SIZE="10"><b>1</b></FONT></FONT>>]
+}

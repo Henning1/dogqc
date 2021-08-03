@@ -1,0 +1,26 @@
+
+Result: 37967 tuples
+c_custkey:   127312  c_name: Customer#0  c_acctbal:         1799.87  c_phone: 31-588-597  n_name:    VIETNAM  c_address: KEJyONof9A  c_comment: t dolphins  revenue:       310245.19  
+c_custkey:    61211  c_name: Customer#0  c_acctbal:         3181.30  c_phone: 28-260-943  n_name:      CHINA  c_address: 5e6SqzOn2W  c_comment: e regular   revenue:        45554.94  
+c_custkey:    90647  c_name: Customer#0  c_acctbal:         9179.01  c_phone: 15-673-832  n_name:   ETHIOPIA  c_address: oed3QSBS5t  c_comment: nts boost   revenue:       283555.62  
+c_custkey:   142741  c_name: Customer#0  c_acctbal:         7022.22  c_phone: 13-414-282  n_name:     CANADA  c_address: kqKmWnI Xg  c_comment: . ironic p  revenue:        37078.99  
+c_custkey:   129304  c_name: Customer#0  c_acctbal:         3370.02  c_phone: 10-935-361  n_name:    ALGERIA  c_address: cOzluYbkHK  c_comment: after the   revenue:       248094.75  
+c_custkey:    20983  c_name: Customer#0  c_acctbal:         6309.27  c_phone: 20-630-759  n_name:       IRAN  c_address: NgPol3zx4D  c_comment: olphins sl  revenue:        16580.38  
+c_custkey:   115801  c_name: Customer#0  c_acctbal:         3296.50  c_phone: 14-995-921  n_name:      EGYPT  c_address: 6yAh82won2  c_comment: its. blith  revenue:       166033.94  
+c_custkey:    19528  c_name: Customer#0  c_acctbal:         5198.32  c_phone: 10-274-455  n_name:    ALGERIA  c_address: 9ujnbducVk  c_comment: e blithely  revenue:       310921.16  
+c_custkey:    12868  c_name: Customer#0  c_acctbal:         -567.98  c_phone: 34-992-932  n_name: UNITED STA  c_address: ,Cppl0Vho1  c_comment: against th  revenue:        18038.40  
+c_custkey:    65219  c_name: Customer#0  c_acctbal:         4491.77  c_phone: 33-445-571  n_name: UNITED KIN  c_address: P2x2BsLDOu  c_comment: furiously   revenue:        87354.77  
+[...]
+
+<timing>
+                    krnl_nation1:    0.0 ms
+                    krnl_orders2:    0.1 ms
+                     scanMultiHT:    0.0 ms
+                krnl_orders2_ins:    0.2 ms
+                  krnl_customer4:    0.3 ms
+                  krnl_lineitem7:    5.8 ms
+              krnl_aggregation11:    0.1 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    6.5 ms
+</timing>
+

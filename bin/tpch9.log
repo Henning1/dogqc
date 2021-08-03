@@ -1,0 +1,28 @@
+
+Result: 175 tuples
+n_name:     RUSSIA  o_year:       1993  sum_profit:     48569620.00  
+n_name:   ETHIOPIA  o_year:       1994  sum_profit:     41597160.00  
+n_name:  ARGENTINA  o_year:       1993  sum_profit:     48605620.00  
+n_name:       IRAQ  o_year:       1992  sum_profit:     47562364.00  
+n_name:      EGYPT  o_year:       1994  sum_profit:     47194936.00  
+n_name:       IRAQ  o_year:       1997  sum_profit:     48585316.00  
+n_name: UNITED KIN  o_year:       1993  sum_profit:     44770172.00  
+n_name:      INDIA  o_year:       1997  sum_profit:     51386136.00  
+n_name:    ROMANIA  o_year:       1996  sum_profit:     47492344.00  
+n_name:     JORDAN  o_year:       1995  sum_profit:     39931696.00  
+[...]
+
+<timing>
+                    krnl_nation1:    0.0 ms
+                  krnl_supplier2:    0.0 ms
+                      krnl_part4:    0.1 ms
+                  krnl_partsupp6:    0.3 ms
+                  krnl_lineitem9:    6.4 ms
+                     scanMultiHT:    0.1 ms
+              krnl_lineitem9_ins:    7.4 ms
+                   krnl_orders12:    1.7 ms
+              krnl_aggregation15:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:   16.0 ms
+</timing>
+

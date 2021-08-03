@@ -1,0 +1,20 @@
+
+Result: 5 tuples
+n_name:      INDIA  sum_rev:     52035460.00  
+n_name:    VIETNAM  sum_rev:     55295056.00  
+n_name:  INDONESIA  sum_rev:     55502060.00  
+n_name:      JAPAN  sum_rev:     45410212.00  
+n_name:      CHINA  sum_rev:     53724536.00  
+
+<timing>
+                  krnl_supplier1:    0.0 ms
+                    krnl_region2:    0.0 ms
+                    krnl_nation4:    0.0 ms
+                  krnl_customer6:    0.1 ms
+                    krnl_orders8:    0.6 ms
+                 krnl_lineitem11:    3.1 ms
+              krnl_aggregation15:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    3.8 ms
+</timing>
+

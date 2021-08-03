@@ -1,0 +1,19 @@
+
+Result: 4 tuples
+n_name:    GERMANY  n_name:     FRANCE  l_year:       1995  sum_volume:     52531760.00  avg_volume:        36429.79  
+n_name:     FRANCE  n_name:    GERMANY  l_year:       1996  sum_volume:     54633108.00  avg_volume:        36133.01  
+n_name:     FRANCE  n_name:    GERMANY  l_year:       1995  sum_volume:     54639748.00  avg_volume:        36378.00  
+n_name:    GERMANY  n_name:     FRANCE  l_year:       1996  sum_volume:     52520532.00  avg_volume:        35776.93  
+
+<timing>
+                  krnl_supplier1:    0.0 ms
+                    krnl_nation2:    0.0 ms
+                   krnl_nation23:    0.0 ms
+                  krnl_customer5:    0.0 ms
+                    krnl_orders7:    0.9 ms
+                  krnl_lineitem9:    1.8 ms
+              krnl_aggregation15:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    2.9 ms
+</timing>
+

@@ -1,0 +1,15 @@
+
+Result: 1 tuples
+avg_yearly:       348406.06  count_price:      587  
+
+<timing>
+                      krnl_part1:    0.1 ms
+                  krnl_lineitem3:    0.9 ms
+         krnl_lineitem_filtered7:    0.0 ms
+               krnl_aggregation8:    0.0 ms
+        krnl_lineitem_filtered29:    0.0 ms
+              krnl_aggregation13:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    1.0 ms
+</timing>
+

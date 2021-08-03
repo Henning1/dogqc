@@ -1,0 +1,19 @@
+
+Result: 1 tuples
+s_suppkey:     8449  s_name: Supplier#0  s_address: Wp34zim9qY  s_phone: 20-469-856  total_revenue:      1772627.12  
+
+<timing>
+                  krnl_lineitem1:    1.3 ms
+               krnl_aggregation4:    0.3 ms
+                   krnl_revenue6:    0.0 ms
+               krnl_aggregation7:    0.0 ms
+                     scanMultiHT:    0.0 ms
+           krnl_aggregation7_ins:    0.0 ms
+                  krnl_revenue28:    0.0 ms
+                     scanMultiHT:    0.2 ms
+              krnl_revenue28_ins:    0.0 ms
+                 krnl_supplier10:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:    1.9 ms
+</timing>
+

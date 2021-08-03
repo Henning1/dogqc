@@ -1,0 +1,14 @@
+
+Result: 4 tuples
+l_returnflag: R  l_linestatus: F  sum_qty:     37707392.00  sum_base_price:  56561881088.00  sum_disc_price:  53737295872.00  avg_qty:           25.50  avg_price:        38246.68  avg_disc:            0.05  count_order:  1478870  
+l_returnflag: N  l_linestatus: O  sum_qty:     74411344.00  sum_base_price: 111642009600.00  sum_disc_price: 106067755008.00  avg_qty:           25.48  avg_price:        38228.66  avg_disc:            0.05  count_order:  2920374  
+l_returnflag: A  l_linestatus: F  sum_qty:     37722968.00  sum_base_price:  56582103040.00  sum_disc_price:  53755031552.00  avg_qty:           25.51  avg_price:        38270.09  avg_disc:            0.05  count_order:  1478493  
+l_returnflag: N  l_linestatus: F  sum_qty:       991417.00  sum_base_price:   1487507712.00  sum_disc_price:   1413082112.00  avg_qty:           25.52  avg_price:        38284.53  avg_disc:            0.05  count_order:    38854  
+
+<timing>
+                  krnl_lineitem1:   12.6 ms
+               krnl_aggregation5:    0.0 ms
+                          finish:    0.0 ms
+                 totalKernelTime:   12.6 ms
+</timing>
+
