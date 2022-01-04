@@ -243,6 +243,7 @@ __global__ void initAggHT ( agg_ht<T>* ht, int32_t num ) {
     for (int i = blockIdx.x * blockDim.x + threadIdx.x; i < num; i += blockDim.x * gridDim.x) {
 	ht[i].lock.init();
 	ht[i].hash = HASH_EMPTY;
+	ht[i].payload = T();
     }
 }
 
