@@ -85,7 +85,7 @@ void* map_memory_file ( const char* filepath ) {
 void unmap_memory_file ( void* ptr ) {
     size_t* baseptr = ((size_t*)(ptr))-1;
     size_t size = *(baseptr);
-    printf("Unmapping file with size %zu", size);    
+    printf("Unmapping file with size %zu\n", size);
     if (munmap(baseptr, size) == -1)
     {
         ERROR("un-mmapping file");

@@ -369,6 +369,9 @@ def mmapMalloc( typename, num, filename):
 def mmapFile ( typename, filename ):
     return "( " + str(typename) + "*) map_memory_file ( " + "\"" + str(filename) + "\"" + " )"  
 
+def unmapFile ( filename ):
+    return "unmap_memory_file ( ( void*) " + filename + " )"
+
 def activemask ( ):
     return "__activemask()"
 

@@ -153,12 +153,14 @@ class PipelineAttributesFile ( object ):
             if baseColFileSys not in self.baseColumns:
                 a.declarePointer ( self.codegen.read )
                 emit ( assign ( a, mmapFile ( a.dataType, baseColFileSys ) ), self.codegen.read )
+                emit ( unmapFile ( a.name ) , self.codegen.end )
                 self.codegen.gpumem.mapForRead ( a )
                 self.baseColumns [ baseColFileSys ] = a.getGPU() 
             # gpu input column that was already used
             else:
                 a.declarePointer ( self.codegen.read )
                 emit ( assign ( a, mmapFile ( a.dataType, baseColFileSys ) ), self.codegen.read )
+                emit ( unmapFile ( a.name ) , self.codegen.end )
                 self.codegen.gpumem.declare ( a )
                 emit ( assign ( a.getGPU(), self.baseColumns [ baseColFileSys ] ), self.codegen.gpumem.cudaMalloc )
             self.codegen.currentKernel.addVar ( a )

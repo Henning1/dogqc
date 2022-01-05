@@ -71,6 +71,7 @@ class Accessor ( object ):
             for c, f in zip ( cols, colsFile ):
                 c.declarePointer( code )
                 emit ( assign ( c.get(), mmapFile ( c.dataType,  self.file ( f ) ) ), code )
+                emit ( unmapFile ( a.name ) , self.codegen.end )
         return code
 
     def isHostVector ( self ):

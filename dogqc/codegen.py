@@ -27,6 +27,7 @@ class CodeGenerator ( object ):
 
         self.declare = Code()
         self.finish = Code()
+        self.end = Code()
         self.mirrorKernel = None
 
         self.gpumem = GpuIO ( )
@@ -154,6 +155,8 @@ class CodeGenerator ( object ):
         for ts in code.timestamps: 
             ts.printTime() 
         emit ( printf ( "</timing>\\n" ), code )  
+
+        code.add(self.end)
 
         code.add("}")
         return code.content
