@@ -181,14 +181,14 @@ class PipelineAttributesFile ( object ):
         self.codegen.currentKernel.addVar ( itmCol )
         self.itmFile [ a.id ] = itmCol
  
-    def mapOutputAttribute ( self, a, expectedSize ):
+    def mapOutputAttribute ( self, a, expectedSize, outputSize ):
         outIdent = ident.oatt ( a )
         oc = self.columns ( a, outIdent, expectedSize )  
         if a.dataType == Type.STRING:
             oc = oc[0]
         oc.declareVector ( self.codegen.declare )
         oc.ishostvector = True
-        self.codegen.gpumem.mapForWrite ( oc, expectedSize )           
+        self.codegen.gpumem.mapForWrite ( oc, outputSize )
         self.codegen.currentKernel.addVar ( oc )
         self.ocolFile [ a.id ] = oc
 
@@ -544,7 +544,7 @@ class DenseWrite ( object ):
         self.tableName = tableName
 
         self.numOut = Variable.val ( CType.INT, "nout_" + tableName, codegen.declare ) 
-        codegen.gpumem.mapForWrite ( self.numOut ) 
+        codegen.gpumem.mapForWrite ( self.numOut )
         codegen.gpumem.initVar ( self.numOut, intConst ( 0 ) ) 
         codegen.currentKernel.addVar ( self.numOut )
 
@@ -567,7 +567,7 @@ class DenseWrite ( object ):
         with IfClause ( vars.activeVar, codegen ):
             for id, att in relation.items():
                 if matType == MaterializationType.RESULT:
-                    ctxt.attFile.mapOutputAttribute ( att, sizeEstimate )
+                    ctxt.attFile.mapOutputAttribute ( att, sizeEstimate, self.numOut.name )
                 elif matType == MaterializationType.TEMPTABLE:
                     ctxt.attFile.mapTemptableOutputAttribute ( att, self.getTable(), sizeEstimate )
                 ctxt.attFile.materializeAttribute ( att, wp, matType )
