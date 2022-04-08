@@ -61,7 +61,7 @@ def execTpch ( acc, num, showPlan=False ):
     if showPlan:
         alg.showGraph ( plan )
 
-    compiler = CudaCompiler ( algebraContext = alg, smArchitecture = "sm_75", decimalRepr = CType.FP32, debug = False )
+    compiler = CudaCompiler ( algebraContext = alg, smArchitecture = "sm_75", decimalRepr = CType.FP64, debug = False )
 
     compilerPlan = alg.translateToCompilerPlan ( plan, compiler )
     compiler.gencode ( compilerPlan )
