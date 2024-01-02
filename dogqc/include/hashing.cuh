@@ -262,6 +262,7 @@ __device__ int hashAggregateGetBucket ( agg_ht<T>* ht, int32_t ht_size, uint64_t
             entry.lock.done();
         }
         entry.lock.wait();
+        __threadfence();
         done = (entry.hash == grouphash);
         if ( numLookups == ht_size ) {
             printf ( "hash table full\n" );
